@@ -1,12 +1,14 @@
-// import express from "express"
-// import multer from "multer"
-// import cors from "cors"
+import express from "express"
+import multer from "multer"
+import cors from "cors"
+import dotenv from "dotenv"
 
-const express = require("express")
-const multer = require("multer")
-const cors = require("cors")
-const {S3Client, PutObjectCommand} = require("@aws-sdk/client-s3")
-const dotenv = require("dotenv")
+
+// const express = require("express")
+// const multer = require("multer")
+// const cors = require("cors")
+// const {S3Client, PutObjectCommand} = require("@aws-sdk/client-s3")
+// const dotenv = require("dotenv")
 
 const app = express()
 const port = 3000
@@ -55,4 +57,4 @@ app.listen(port, () => {
 
 
 // export default app
-module.exports = app
+// module.exports = app
