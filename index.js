@@ -2,6 +2,8 @@ import express from "express"
 import multer from "multer"
 import cors from "cors"
 import dotenv from "dotenv"
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
+
 
 
 // const express = require("express")
