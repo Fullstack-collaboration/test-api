@@ -32,6 +32,11 @@ app.get("/", (req, res) => {
 app.post("/upload", upload.single("file"), async (req, res) => {
     console.log(req.file)
     // res.send("File Upload")
+    const publicBucketUrl = "https://pub-83c13c4b6141426b8e4d3d54567ecbb9.r2.dev/"
+    let randomKey = Math.round(Math.random()*999999999)
+    let stringRandomKey = randomKey.toString() + randomKey.toString() + randomKey.toString() + randomKey.toString() + randomKey.toString()
+    const fileName = req.file.originalname
+    const fileUrl = publicBucketUrl + stringRandomKey
     const S3 = new S3Client({
         region: "auto",
         endpoint: process.env.ENDPOINT,
@@ -45,12 +50,13 @@ app.post("/upload", upload.single("file"), async (req, res) => {
         new PutObjectCommand({
             Body: req.file.buffer,
             Bucket: "fullstack-team",
-            Key: req.file.originalname,
+            Key: stringRandomKey,
             ContentType: req.file.mimetype
         })
     )
+    console.log(`the url : ${fileUrl}`)
     // const presigned = await S3.sign()
-    res.status(200).json({message: "Data berhasil bosss"})
+    res.status(200).json({message: `<a href="${fileUrl}">Link file = ${fileUrl}</a>`})
 })
 
 app.listen(port, () => {
