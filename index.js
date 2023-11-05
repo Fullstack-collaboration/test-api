@@ -49,7 +49,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
             ContentType: req.file.mimetype
         })
     )
-    const presigned = await S3.sign()
+    // const presigned = await S3.sign()
     res.status(200).json({message: "Data berhasil bosss"})
 })
 
